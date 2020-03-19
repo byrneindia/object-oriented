@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="4e473014-b32d-46ca-a705-cfbc0d9800fa" name="oop" url="/https://bootcamp-coders.cnm.edu/~ibyrne1/oop">
+        <fileTransfer host="bootcamp-coders.cnm.edu" port="22" rootFolder="/home/ibyrne1/public_html/oop" accessType="SFTP" authAgent="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
