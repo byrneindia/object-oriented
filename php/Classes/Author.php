@@ -35,7 +35,7 @@ class Author{
 			$this->setTweetContent($newTweetContent);
 			$this->setTweetDate($newTweetDate);
 		}
-			//determine what exception type was thrown
+			//catches parameter errors??*
 		catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
@@ -54,9 +54,9 @@ class Author{
 	/**
 	 * mutator method for tweet id
 	 *
-	 * @param Uuid|string $newAuthorId new value of tweet id
-	 * @throws \RangeException if $newTweetId is not positive
-	 * @throws \TypeError if $newTweetId is not a uuid or string
+	 * @param Uuid|string $newAuthorId new value of Author id
+	 * @throws \RangeException if $newAuthorId is not positive
+	 * @throws \TypeError if $newAuthortId is not a uuid or string
 	 **/
 	public function setAuthorId( $newAuthorId) : void {
 		try {
@@ -99,7 +99,7 @@ class Author{
 	}
 
 	/**
-	 * accessor method for tweet content
+	 * accessor method for getter?
 	 *
 	 * @return string value of tweet content
 	 **/
