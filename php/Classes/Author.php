@@ -7,52 +7,28 @@ require_once(dirname(__DIR__) . "/vendor/autoload.php");
 use Ramsey\Uuid\Uuid;
 
 /**
- * Small Cross Section of a Twitter like Message
- *
- * This Tweet can be considered a small example of what services like Twitter store when messages are sent and
- * received using Twitter. This can easily be extended to emulate more features of Twitter.
- *
+ * Author
+ * Phase 1 OOP
  * @author Dylan McDonald <dmcdonald21@cnm.edu>
  * @version 3.0.0
  **/
-class Author implements \JsonSerializable {
-	use ValidateDate;
+class Author{
 	use ValidateUuid;
 	/**
-	 * id for this Tweet; this is the primary key
-	 * @var Uuid $tweetId
+	 * id for this Author; this is the primary key
+	 * @var Uuid $authorId
 	 **/
 	private $authorId;
 	/**
-	 * id of the Profile that sent this Tweet; this is a foreign key
-	 * @var Uuid $tweetProfileId
-	 **/
-	private $tweetProfileId;
-	/**
-	 * actual textual content of this Tweet
-	 * @var string $tweetContent
-	 **/
-	private $tweetContent;
-	/**
-	 * date and time this Tweet was sent, in a PHP DateTime object
-	 * @var \DateTime $tweetDate
-	 **/
-	private $tweetDate;
+	 * @param string|Uuid $newAuthorId if of this Author or null if a new Author
+	 * @param string|Uuid $newAuthorActivationToken actiation token safegurad against
+	 * @param string $newAuthorAvatarURl string containing new AuthorURL can be null
+	 * @param newAuthorEmail string containing email
+	 * @param newAuthorHash containing password hash
+	 * @param newAuthorUsername string containing username
+	  */
 
-	/**
-	 * constructor for this Tweet
-	 *
-	 * @param string|Uuid $newTweetId id of this Tweet or null if a new Tweet
-	 * @param string|Uuid $newTweetProfileId id of the Profile that sent this Tweet
-	 * @param string $newTweetContent string containing actual tweet data
-	 * @param \DateTime|string|null $newTweetDate date and time Tweet was sent or null if set to current date and time
-	 * @throws \InvalidArgumentException if data types are not valid
-	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
-	 * @throws \TypeError if data types violate type hints
-	 * @throws \Exception if some other exception occurs
-	 * @Documentation https://php.net/manual/en/language.oop5.decon.php
-	 **/
-	public function __construct($newId, $newTweetProfileId, string $newTweetContent, $newTweetDate = null) {
+	public function __construct($newAuthorId, string $newAuthorActivationToken, $newAuthorAvatarUrl {
 		try {
 			$this->setTweetId($newTweetId);
 			$this->setTweetProfileId($newTweetProfileId);
@@ -71,27 +47,27 @@ class Author implements \JsonSerializable {
 	 *
 	 * @return Uuid value of tweet id
 	 **/
-	public function getTweetId() : Uuid {
-		return($this->tweetId);
+	public function getAuthorId() : Uuid {
+		return($this->authorId);
 	}
 
 	/**
 	 * mutator method for tweet id
 	 *
-	 * @param Uuid|string $newTweetId new value of tweet id
+	 * @param Uuid|string $newAuthorId new value of tweet id
 	 * @throws \RangeException if $newTweetId is not positive
 	 * @throws \TypeError if $newTweetId is not a uuid or string
 	 **/
-	public function setTweetId( $newTweetId) : void {
+	public function setAuthorId( $newAuthorId) : void {
 		try {
-			$uuid = self::validateUuid($newTweetId);
+			$uuid = self::validateUuid($newAuthorId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
 
 		// convert and store the tweet id
-		$this->tweetId = $uuid;
+		$this->authorId = $uuid;
 	}
 
 	/**
@@ -189,40 +165,4 @@ class Author implements \JsonSerializable {
 		$this->tweetDate = $newTweetDate;
 	}
 
-	/**
-	 * inserts this Tweet into mySQL
-	 *
-	 * @param \PDO $pdo PDO connection object
-	 * @throws \PDOException when mySQL related errors occur
-	 * @throws \TypeError if $pdo is not a PDO connection object
-	 **/
-	public function insert(\PDO $pdo) : void {
-
-		// create query template
-		$query = "INSERT INTO tweet(tweetId,tweetProfileId, tweetContent, tweetDate) VALUES(:tweetId, :tweetProfileId, :tweetContent, :tweetDate)";
-		$statement = $pdo->prepare($query);
-
-		// bind the member variables to the place holders in the template
-		$formattedDate = $this->tweetDate->format("Y-m-d H:i:s.u");
-		$parameters = ["tweetId" => $this->tweetId->getBytes(), "tweetProfileId" => $this->tweetProfileId->getBytes(), "tweetContent" => $this->tweetContent, "tweetDate" => $formattedDate];
-		$statement->execute($parameters);
-	}
-
-
-	/**
-	 * deletes this Tweet from mySQL
-	 *
-	 * @param \PDO $pdo PDO connection object
-	 * @throws \PDOException when mySQL related errors occur
-	 * @throws \TypeError if $pdo is not a PDO connection object
-	 **/
-	public function delete(\PDO $pdo) : void {
-
-		// create query template
-		$query = "DELETE FROM tweet WHERE tweetId = :tweetId";
-		$statement = $pdo->prepare($query);
-
-		// bind the member variables to the place holder in the template
-		$parameters = ["tweetId" => $this->tweetId->getBytes()];
-		$statement->execute($parameters);
 	}
