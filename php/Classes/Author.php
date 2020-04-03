@@ -287,7 +287,7 @@ class Author {
 				* @throws \TypeError when a variable are not the correct data type.
 				*/
 
-		/*Get author from mySQL*/
+		/*Get author from mySQL.*/
 				try {
 				$author = null;
 					$statement->setFetchMode(\PDO::FETCH_ASSOC);
@@ -308,7 +308,7 @@ class Author {
 					$statement = $pdo->prepare($query);
 					$statement->execute();
 
-					// build an array of tweets
+					// build an array of author usernames.
 					$authors = new \SplFixedArray($statement->rowCount());
 					$statement->setFetchMode(\PDO::FETCH_ASSOC);
 					while(($row = $statement->fetch()) !== false) {
