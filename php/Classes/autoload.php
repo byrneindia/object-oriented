@@ -1,4 +1,5 @@
 <?php
+namespace byrneindia\objectoriented
 /**
  * PSR-4 Compliant Autoloader
  *
