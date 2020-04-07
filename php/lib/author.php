@@ -1,6 +1,6 @@
 <?php
 //load author class
-require_once (byrneindia\objectoriented\author.php)
+require_once (ByrneIndia\ObjectOriented\author.php);
 
 use byrneindia\objectoriented\author;
 

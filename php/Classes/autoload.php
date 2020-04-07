@@ -1,5 +1,5 @@
 <?php
-namespace byrneindia\objectoriented
+namespace byrneindia\objectoriented;
 /**
  * PSR-4 Compliant Autoloader
  *
@@ -16,7 +16,7 @@ spl_autoload_register(function ($class) {
 	 * prefix: the prefix for all the classes (i.e., the namespace)
 	 * baseDir: the base directory for all classes (default = current directory)
 	 **/
-	$prefix = "Deepdivedylan\\DataDesign";
+	$prefix = "byrneindia\\objectoriented";
 	$baseDir = __DIR__;
 
 	// does the class use the namespace prefix?

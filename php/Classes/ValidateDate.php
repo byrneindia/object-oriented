@@ -1,5 +1,5 @@
 <?php
-namespace byrneindia\objectoriented;
+namespace ByrneIndia\ndia\objectoriented\ndia\objectoriented;
 /**
  * Trait to Validate a mySQL Date
  *
