@@ -22,9 +22,9 @@ class Author {
 
 	/**
 	 * *Constructor for this author.
-	 * @param int Uuid $newAuthorId new user id.
+	 * @param $newAuthorId
 	 * @param string $newAuthorActivationToken new activation token.
-	 * @param string $newAuthorAvatarURl new Author Avatar.
+	 * @param $newAuthorAvatarUrl
 	 * @param string $newAuthorEmail string containing email
 	 * @param string $newAuthorHash containing password hash.
 	 * @param string $newAuthorUsername string containing username.
@@ -52,7 +52,7 @@ class Author {
 
 	public function getAuthorId() : Uuid {
 		return($this->authorId);
-	}
+}
 
 	/**
 	 * Mutator method for Author id.
@@ -75,6 +75,12 @@ class Author {
 		$this->authorId = $uuid;
 	}
 
+	/**
+	 * @return mixed
+	 */
+	public function getAuthorActivationToken() {
+		return $this->authorActivationToken;
+	}
 	/**
 	 * accessor method for author activation token.
 	 *
@@ -99,6 +105,12 @@ class Author {
 		$this->authorActivationToken = $newAuthorActivationToken;
 	}
 
+	/**
+	 * @return mixed
+	 */
+	public function getAuthorAvatarUrl() {
+		return $this->authorAvatarUrl;
+	}
 	/**
 	 * mutator method for author activation token.
 	 *
@@ -128,6 +140,12 @@ class Author {
 		$this->authorAvatarUrl = $newAuthorAvatarURL;
 	}
 
+	/**
+	 * @return mixed
+	 */
+	public function getAuthorEmail() {
+		return $this->authorEmail;
+	}
 	/**
 	 * mutator method for email
 	 *
@@ -194,6 +212,12 @@ class Author {
 	}
 
 	/**
+	 * @return mixed
+	 */
+	public function getAuthorUsername() {
+		return $this->authorUsername;
+	}
+	/**
 	 * mutator method for Username
 	 *
 	 * @param string $newAuthorUsername
@@ -237,7 +261,7 @@ class Author {
 
 	/** Delete this author. */
 
-	public function delete (\PDO  $pdo): void
+	public function delete (\PDO  $pdo)
 	{
 		// create query template
 		$query = "DELETE FROM author WHERE authorId = :authorId";
@@ -272,7 +296,7 @@ class Author {
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	/* Gets the author.**/
 
-	public static function getAuthorByAuthorId(\PDO $pdo, $authorId) : ?author
+	public static function getAuthorByAuthorId(\PDO $pdo, $authorId) : ?Author
 	{
 
 		// sanitize the authorID before searching
