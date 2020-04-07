@@ -62,7 +62,7 @@ class Author {
 	 * @throws \TypeError if $newAuthorId is not a integer.
 	 **/
 
-	public function setAuthorId( $newAuthorId): string
+	public function setAuthorId( $newAuthorId)
 	{
 		try {
 			$uuid = self::validateUuid($newAuthorId);
@@ -78,10 +78,11 @@ class Author {
 	/**
 	 * accessor method for author activation token.
 	 *
+	 * @param string|null $newAuthorActivationToken
 	 * @return string value of the activation method.
-	 **/
+	 */
 
-	public function setAuthorActivationToken(?string $newAuthorActivationToken): void {
+	public function setAuthorActivationToken(?string $newAuthorActivationToken) {
 		if ($newAuthorActivationToken == null) {
 			$this->authorActivationToken = null;
 			return;
@@ -107,7 +108,7 @@ class Author {
 	 * @throws \TypeError if activation token is not a string.
 	 **/
 
-	public function setAuthorAvatarURL (string $newAuthorAvatarURL): string
+	public function setAuthorAvatarURL (string $newAuthorAvatarURL)
 	{
 		if ($newAuthorAvatarURL === null) {
 			$this->authorAvatarUrl = null;
@@ -136,7 +137,7 @@ class Author {
 	 * @throws \TypeError if $newEmail is not a string.
 	 **/
 
-	public function setAuthorEmail(string $newAuthorEmail): string  {
+	public function setAuthorEmail(string $newAuthorEmail) {
 		// verify the email content is secure
 		$newAuthorEmail = trim($newAuthorEmail);
 		$newAuthorEmail = filter_var($newAuthorEmail, FILTER_VALIDATE_EMAIL);
@@ -172,7 +173,7 @@ class Author {
 	 * @throws \TypeError if author has is not a string.
 	 **/
 
-	public function setAuthorHash(string $newAuthorHash) : void {
+	public function setAuthorHash(string $newAuthorHash) {
 		//enforce has format.
 		$newAuthorHash = trim($newAuthorHash);
 		$newAuthorHash = strtolower($newAuthorHash);
@@ -197,7 +198,7 @@ class Author {
 	 *
 	 * @param string $newAuthorUsername
 	 */
-	public function setAuthorUsername(string $newAuthorUsername): string {
+	public function setAuthorUsername(string $newAuthorUsername) {
 		// verify the at handle is secure
 		$newAuthorUsername = trim($newAuthorUsername);
 		$newAuthorUsername = filter_var($newAuthorUsername, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
